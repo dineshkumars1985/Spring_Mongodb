@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+    <context:property-placeholder location="classpath:db.properties" />
+
+    <bean id="mongoClient" class="com.mongodb.MongoClient" destroy-method="close">
+        <constructor-arg type="java.lang.String" value="${mongodb.host}" />
+        <constructor-arg type="int" value="${mongodb.port}" />
+    </bean>
+
+    <bean id="iexDao" class="com.rest.app.dao.IexDao"
+          depends-on="mongoClient" init-method="init">
+        <property name="mongoClient" ref="mongoClient" />
+        <property name="dbName" value="${mongodb.db.name}" />
+        <property name="collectionName" value="${mongodb.db.collection.iex}" />
+    </bean>
+
+    <bean id="iexBo" class="com.rest.app.business.IexBo">
+        <property name="symbol" value="LLY,CYH,LHCG" />
+        <property name="iexinterval" value="15000" />
+    </bean>
+
+
+    <context:component-scan base-package="com.rest.app" />
+
+</beans>
