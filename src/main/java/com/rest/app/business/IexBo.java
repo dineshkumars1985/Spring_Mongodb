@@ -1,10 +1,7 @@
 package com.rest.app.business;
 
 import com.rest.app.dao.IexDao;
-import com.rest.app.domain.IexFetchModel;
-import com.rest.app.domain.IexModel;
-import com.rest.app.domain.IexPk;
-import com.rest.app.domain.IexResultModel;
+import com.rest.app.domain.*;
 import com.rest.app.util.AppUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,11 +42,10 @@ public class IexBo {
                 IexResultModel resModel;
                 if(iexMap.containsKey(model.getName())){
                     resModel = iexMap.get(model.getName());
-                    resModel.addSinglePrice(model.getPrice());
                 }else{
                     resModel = new IexResultModel(model.getName(),model.getLogo());
-                    resModel.addSinglePrice(model.getPrice());
                 }
+                resModel.addSingleObject(new IexTimeValue(AppUtils.changeTsFormate(model.get_id().getInsert_ts()), model.getPrice()));
                 iexMap.put(model.getName(), resModel);
             }
             result.addAll(iexMap.values());

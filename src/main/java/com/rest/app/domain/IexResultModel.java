@@ -1,6 +1,5 @@
 package com.rest.app.domain;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,7 @@ public class IexResultModel {
 
   private String name;
   private String logo;
-  private List<Double> price;
+  private List<IexTimeValue> timevalue;
 
   public IexResultModel(String name, String logo){
     this.name = name;
@@ -35,24 +34,24 @@ public class IexResultModel {
     this.logo = logo;
   }
 
-  public List<Double> getPrice() {
-    if(price == null){
-      price = new ArrayList<Double>();
+  public List<IexTimeValue> getTimevalue() {
+    if(timevalue == null){
+      timevalue = new ArrayList<IexTimeValue>();
     }
-    return price;
+    return timevalue;
   }
 
-  public void setPrice(List<Double> price) {
-    if(price == null){
-      price = new ArrayList<Double>();
+  public void setTimevalue(List<IexTimeValue> timevalue) {
+    if(timevalue == null){
+      timevalue = new ArrayList<IexTimeValue>();
     }
-    this.price = price;
+    this.timevalue = timevalue;
   }
 
-  public void addSinglePrice(Double priceval) {
-    if(price == null){
-      price = new ArrayList<Double>();
+  public void addSingleObject(IexTimeValue val) {
+    if(timevalue == null){
+      timevalue = new ArrayList<IexTimeValue>();
     }
-    this.price.add(priceval);
+    this.timevalue.add(val);
   }
 }

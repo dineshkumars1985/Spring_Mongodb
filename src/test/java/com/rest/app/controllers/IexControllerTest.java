@@ -1,12 +1,7 @@
 package com.rest.app.controllers;
 
-import com.google.common.collect.Sets;
 import com.rest.app.business.IexBo;
-import com.rest.app.dao.IexDao;
-import com.rest.app.domain.IexFetchModel;
-import com.rest.app.domain.IexModel;
-import com.rest.app.domain.IexPk;
-import com.rest.app.domain.IexResultModel;
+import com.rest.app.domain.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +11,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.ws.rs.core.Response;
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -49,7 +43,7 @@ public class IexControllerTest {
     iexFetchModel = new IexFetchModel();
     iexFetchModel.setSymbol(Collections.singletonList("CYN"));
     resModel = new IexResultModel("apple", "logo");
-    resModel.addSinglePrice(6.3);
+    resModel.addSingleObject(new IexTimeValue("2018-10-10",6.3));
   }
 
   @After
