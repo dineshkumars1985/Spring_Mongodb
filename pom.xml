@@ -18,7 +18,7 @@
     <jackson.version>1.9.12</jackson.version>
     <version.slf4j>1.7.5</version.slf4j>
     <jetty-plugin.version>9.2.2.v20140723</jetty-plugin.version>
-    <local.server.port>8090</local.server.port>
+    <local.server.port>8080</local.server.port>
     <local.server.path>/</local.server.path>
     <local.server.stop-port>8099</local.server.stop-port>
 </properties>
